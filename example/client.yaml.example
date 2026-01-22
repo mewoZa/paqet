@@ -21,17 +21,24 @@ socks5:
 # Network interface settings
 network:
   interface: "en0"                          # CHANGE ME: Network interface (en0, eth0, wlan0, etc.)
-  local_addr: "192.168.1.100:0"             # CHANGE ME: Local IP and port for raw packets
-  router_mac: "aa:bb:cc:dd:ee:ff"           # CHANGE ME: Gateway/router MAC address
+  
+  # IPv4 configuration
+  ipv4:
+    addr: "192.168.1.100:0"                 # CHANGE ME: Local IP (use port 0 for random port)
+    router_mac: "aa:bb:cc:dd:ee:ff"         # CHANGE ME: Gateway/router MAC address
+  
+  # IPv6 configuration (optional)
+  ipv6:
+    addr: "[2001:db8::1]:0"                 # CHANGE ME: Local IPv6 address and port (optional)
+    router_mac: "aa:bb:cc:dd:ee:ff"         # CHANGE ME: Gateway/router MAC address for IPv6
+  
+  tcp:
+    local_flag: ["PA"]                      # Local TCP flags (Push+Ack default)
+    remote_flag: ["PA"]                     # Remote TCP flags (Push+Ack default)
   
   # PCAP settings (optional - will use defaults)
   pcap:
-    sockbuf: 4194304  # 4MB buffer (default for client)
-  
-  # TCP flags for packet crafting (optional - will use defaults)  
-  tcp:
-    local_flag: ["PA"]   # Local TCP flags (Push+Ack default)
-    remote_flag: ["PA"]  # Remote TCP flags (Push+Ack default)
+    sockbuf: 4194304                        # 4MB buffer (default for client)
 
 # Server connection settings
 server:

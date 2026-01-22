@@ -13,16 +13,24 @@ listen:
 # Network interface settings
 network:
   interface: "eth0"                          # CHANGE ME: Network interface (eth0, ens3, en0, etc.)
-  local_addr: "10.0.0.100:9999"              # CHANGE ME: Server IP and port (port must match listen.addr)
-  router_mac: "aa:bb:cc:dd:ee:ff"            # CHANGE ME: Gateway/router MAC address
   
-  # PCAP settings (optional - will use defaults)
-  pcap:
-    sockbuf: 8388608  # 8MB buffer (default for server)
+  # IPv4 configuration
+  ipv4:
+    addr: "10.0.0.100:9999"                  # CHANGE ME: Server IPv4 and port (port must match listen.addr)
+    router_mac: "aa:bb:cc:dd:ee:ff"          # CHANGE ME: Gateway/router MAC address
+  
+  # IPv6 configuration (optional)
+  ipv6:
+    addr: "[::1]:9999"                       # CHANGE ME: Server IPv6 and port (or remove if not using IPv6)
+    router_mac: "aa:bb:cc:dd:ee:ff"          # CHANGE ME: Gateway/router MAC address
   
   # TCP flags for packet crafting (optional - will use defaults)
   tcp:
-    local_flag: ["PA"]   # Local TCP flags (Push+Ack default)
+    local_flag: ["PA"]                       # Local TCP flags (Push+Ack default)
+  
+  # PCAP settings (optional - will use defaults)
+  pcap:
+    sockbuf: 8388608                         # 8MB buffer (default for server)
 
 # Transport protocol configuration
 transport:
